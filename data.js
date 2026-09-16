@@ -489,7 +489,7 @@ const WORDS = [
     "author": "박경리",
     "call": "813.62-박14ㄱ",
     "desc": "가을에 나타난 신비로운 여인과 푸른 저택의 인물들을 둘러싼 욕망, 질투, 상처를 추리소설적 기법으로 그려요. 잎이 지고 빛이 기우는 계절처럼 고독하고 불안한 분위기가 짙게 감돌아요.",
-    "cover": "https://alpasq.eco.co.kr/resources/images/cover/no-image-MO.png",
+    "cover": "https://image.aladin.co.kr/product/3592/44/cover500/8960532762_1.jpg",
     "q": "가을에 온 여인"
    },
    {
