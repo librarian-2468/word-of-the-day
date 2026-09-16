@@ -12,29 +12,28 @@
     --line:#e7e0d2; --green:#5b6f58; --green-dk:#4a5c47; --tape:#a8b79f; --chip:#eef0e9;
   }
   *{box-sizing:border-box}
-  body{margin:0;color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.7;
+  body{margin:0;color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.7;word-break:keep-all;
        background:
          radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 42%),
          radial-gradient(circle at 82% 78%, rgba(255,255,255,.4), transparent 45%),
          var(--bg);
        padding-inline:14px}
   .screen{max-width:430px;margin:0 auto;padding-block:0 40px}
-  .hidden{display:none}
 
-  /* 상단 바 */
   .bar{position:sticky;top:0;z-index:5;width:100vw;margin-left:calc(50% - 50vw);
        background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(70,58,40,.05)}
   .bar .inner{max-width:430px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:12px 16px}
   .bar .ttl{font-family:"Noto Serif KR",serif;font-size:18px;letter-spacing:.04em;line-height:1.2}
-  .bar .sub{display:block;font-size:12px;color:var(--sub);letter-spacing:0}
+  .bar .sub{display:block;font-size:12px;color:var(--sub)}
 
-  /* 배너 */
-  .banner{position:relative;margin-top:18px;display:flex;justify-content:center;align-items:center;border-radius:14px;overflow:hidden;
+  .banner{position:relative;margin-top:18px;display:flex;justify-content:center;align-items:center;
+          border-radius:14px;overflow:hidden;
           background:linear-gradient(160deg,#efe9dc 0%,#e8e3d4 60%,#e3ded0 100%);
           border:1px solid var(--line);padding:30px 16px 24px;min-height:246px}
   .banner .deco{position:absolute;right:-14px;bottom:-14px;width:180px;opacity:.5;z-index:0}
-  .note{position:relative;z-index:1;width:min(268px,78%);background:var(--note);border:1px solid #efe9dc;border-radius:2px;
-        padding:34px 18px 22px;text-align:center;box-shadow:0 10px 24px rgba(70,58,40,.14);transform:rotate(-1.2deg)}
+  .note{position:relative;z-index:1;width:min(268px,78%);background:var(--note);border:1px solid #efe9dc;
+        border-radius:2px;padding:34px 18px 22px;text-align:center;
+        box-shadow:0 10px 24px rgba(70,58,40,.14);transform:rotate(-1.2deg)}
   .note::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);
         width:86px;height:24px;background:var(--tape);opacity:.6;border-radius:1px;
         box-shadow:0 1px 2px rgba(0,0,0,.06)}
@@ -44,104 +43,352 @@
   .meaning{font-family:"Noto Serif KR",serif;font-size:15px;color:#4c463d;margin:0}
   .date{margin-top:16px;font-size:12px;color:#9a9082;letter-spacing:.04em}
 
-  /* 섹션 제목 */
-  .sec{margin:30px 0 4px;display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .sec{margin:30px 0 4px}
   .mark{position:relative;font-family:"Noto Serif KR",serif;font-size:21px;font-weight:700;display:inline-block}
   .mark::after{content:"";position:absolute;left:-4px;right:-4px;bottom:1px;height:11px;background:#e3e8dd;
                border-radius:2px;z-index:-1;transform:rotate(-.6deg)}
-  .sec .more{font-size:13px;color:var(--green);font-weight:500}
   .lead{font-size:13.5px;color:var(--sub);margin:2px 0 16px}
 
-  /* 책 카드 */
   .book{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;
         box-shadow:0 6px 18px rgba(80,66,44,.07)}
   .book .top{display:flex;gap:16px;align-items:flex-start}
   .cover{flex:0 0 100px;width:100px;aspect-ratio:2/3;border-radius:5px;overflow:hidden;background:#ece5d8;
-         box-shadow:0 8px 18px rgba(70,58,40,.22)}
+         box-shadow:0 8px 18px rgba(70,58,40,.22);display:flex;align-items:center;justify-content:center}
   .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .cover .ph{font-family:"Noto Serif KR",serif;font-size:12px;color:#9a9082;text-align:center;padding:8px;line-height:1.4}
   .book h2{font-family:"Noto Serif KR",serif;font-size:20px;margin:2px 0 3px;line-height:1.35}
   .book .author{font-size:13px;color:var(--sub)}
   .quote{font-family:"Noto Serif KR",serif;font-size:14.5px;color:#4c463d;margin:12px 0 0;line-height:1.75}
-  .quote::before{content:"“";color:#b9c2b2;font-size:22px;line-height:0;margin-right:2px}
-  .quote::after{content:"”";color:#b9c2b2;font-size:22px;line-height:0;margin-left:2px}
-  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
-  .chip{font-size:11.5px;color:#5f6b59;background:var(--chip);border-radius:999px;padding:4px 10px}
+  .quote::before{content:"\201C";color:#b9c2b2;font-size:22px;line-height:0;margin-right:2px}
+  .quote::after{content:"\201D";color:#b9c2b2;font-size:22px;line-height:0;margin-left:2px}
   .meta{display:flex;align-items:center;justify-content:space-between;gap:10px;
         border-top:1px dashed var(--line);margin-top:16px;padding-top:12px}
   .call{font-size:12.5px;color:var(--sub)}
   .call b{color:var(--ink);font-weight:500}
-  .link{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;
-        padding:7px 12px;border:1.2px solid var(--green);border-radius:999px;background:#eef0e9;
+  .link{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;padding:7px 12px;
+        border:1.2px solid var(--green);border-radius:999px;background:#eef0e9;
         color:var(--green-dk);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
-  .link:active{transform:translateY(1px)}
 
-  /* 버튼 */
-  .cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:0;
-       padding:13px 16px;border:0;border-radius:11px;background:var(--green);color:#fdfbf6;
-       font-family:"Noto Sans KR",sans-serif;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.01em;
-       box-shadow:0 5px 12px rgba(75,92,71,.22)}
-  .cta:active{transform:translateY(1px)}
-  .cta.ghost{background:#fffdf8;color:var(--green-dk);border:1.5px solid var(--green);box-shadow:none;font-weight:600;margin-top:26px}
-  .cta .arw{font-size:15px}
-
-  .foot{margin-top:24px;text-align:center;font-size:12px;color:var(--sub)}
-  .foot .em{font-family:"Noto Serif KR",serif;font-size:15px;color:#5a5249;display:block;margin-bottom:3px}
-
-  /* 목록 화면 */
-  .listLead{font-size:13.5px;color:var(--sub);margin:2px 0 18px}
-  .item{display:flex;justify-content:space-between;gap:12px;padding:13px 2px;border-bottom:1px dashed var(--line)}
-  .item .t{font-size:14.5px;line-height:1.5}
-  .item .t small{display:block;color:var(--sub);font-size:12px}
-  .item .c{flex:0 0 auto;font-size:12px;color:var(--sub);text-align:right;padding-top:3px}
-  .badge{display:inline-block;font-size:11px;color:#6d7a68;background:var(--chip);border-radius:999px;padding:1px 8px;margin-left:6px}
-  .note-sm{margin-top:30px;font-size:11px;color:#a89d8e;text-align:center}
-
-  .ctaBox{margin-top:26px;background:#eef0e9;border-radius:14px;padding:16px 16px 16px}
+  .ctaBox{margin-top:26px;background:#eef0e9;border-radius:14px;padding:16px}
   .ctaLead{display:flex;align-items:center;justify-content:center;gap:8px;margin:2px 0 12px;text-align:center;
            font-family:"Noto Serif KR",serif;font-size:15px;color:#4c5a49}
-  a.cta{text-decoration:none}
-
-  .item{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px dashed var(--line)}
-  .item .thumb{flex:0 0 46px;width:46px;height:66px;border-radius:3px;overflow:hidden;background:#ece5d8;
-               box-shadow:0 3px 8px rgba(70,58,40,.18);display:flex;align-items:center;justify-content:center}
-  .item .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-  .item .thumb .soon{font-size:10px;color:#9a9082;text-align:center;line-height:1.3}
-  .item .t{flex:1 1 auto;font-size:14.5px;line-height:1.5}
-  .item .c{flex:0 0 auto;font-size:11.5px;color:var(--sub);text-align:right}
+  .cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+       padding:13px 16px;border:0;border-radius:11px;background:var(--green);color:#fdfbf6;
+       font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 5px 12px rgba(75,92,71,.22)}
+  .cta .arw{font-size:15px}
+  .foot{margin-top:24px;text-align:center;font-size:12px;color:var(--sub)}
+  .foot .em{font-family:"Noto Serif KR",serif;font-size:15px;color:#5a5249;display:block;margin-bottom:3px}
+  .listLead{font-size:13.5px;color:var(--sub);margin:2px 0 18px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 12px;align-items:start}
+  .tile{display:block;width:100%;padding:0;border:0;background:none;text-align:center;cursor:pointer;
+        font-family:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+  .tile .cover{display:flex;width:100%;flex:none;aspect-ratio:2/3;border-radius:5px;overflow:hidden;background:#ece5d8;
+        box-shadow:0 6px 14px rgba(70,58,40,.18);border:2px solid transparent;transition:transform .15s,border-color .15s}
+  .tile .ph{font-size:11.5px;padding:6px}
+  .tile .tTitle{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+        margin-top:8px;font-size:11.5px;line-height:1.4;color:#5a5249}
+  .tile.on .cover{border-color:var(--green);transform:translateY(-2px)}
+  .tile.on .tTitle{color:var(--green-dk);font-weight:600}
+  .detail{grid-column:1/-1;position:relative;background:var(--paper);border:1px solid var(--line);border-radius:16px;
+        padding:18px;box-shadow:0 6px 18px rgba(80,66,44,.07);animation:open .18s ease-out}
+  .detail::before{content:"";position:absolute;top:-8px;left:var(--x,50%);width:14px;height:14px;
+        background:var(--paper);border-left:1px solid var(--line);border-top:1px solid var(--line);transform:translateX(-50%) rotate(45deg)}
+  @keyframes open{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+  .dHead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .detail h2{font-family:"Noto Serif KR",serif;font-size:19px;margin:0 0 3px;line-height:1.35}
+  .detail .author{font-size:13px;color:var(--sub)}
+  .close{flex:none;width:28px;height:28px;border:0;border-radius:50%;background:#efebe2;color:var(--sub);font-size:18px;line-height:1;cursor:pointer}
+  .soonTxt{color:#9a9082}
 </style>
 </head>
 <body>
-<section class="screen" id="list">
+<section class="screen">
   <div class="bar"><div class="inner">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5b6f58" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5h6a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H3z"/><path d="M21 5.5h-6a3 3 0 0 0-3 3V20a2.5 2.5 0 0 1 2.5-2.5H21z"/></svg>
     <div>
-      <div class="ttl">언어와 세계</div>
-      <span class="sub">10월 북큐레이션</span>
+      <div class="ttl">언어로 넓어지는 세계</div>
+      <span class="sub">10월 북큐레이션 · 전시 도서 16권</span>
     </div>
   </div></div>
 
-  <div class="sec" style="margin-top:22px"><span class="mark">전시 중인 책 16권</span></div>
-  <p class="listLead">2층 통합자료실 전시대에서 만날 수 있어요.</p>
+  <div class="sec" style="margin-top:22px"><span class="mark">전시 중인 책</span></div>
+  <p class="listLead">2층 통합자료실 전시대에서 만날 수 있어요. 표지를 누르면 소개가 열려요.</p>
 
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/11715/40/cover500/8955619448_1.jpg" alt="언어 공부 표지"></div><div class="t">언어 공부<small>롬브 커토</small></div><div class="c">707-롬47ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://bookthumb-phinf.pstatic.net/cover/163/838/16383897.jpg" alt="언어의 역사 표지"></div><div class="t">언어의 역사<small>데이비드 크리스털</small></div><div class="c">701-크298ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/38751/15/cover200/k822136041_1.jpg" alt="언어는 어떻게 인간을 바꾸는가 표지"></div><div class="t">언어는 어떻게 인간을 바꾸는가<small>비오리카 마리안</small></div><div class="c">701-마298ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://bookthumb-phinf.pstatic.net/cover/164/934/16493460.jpg" alt="언어의 뇌과학 표지"></div><div class="t">언어의 뇌과학<small>알베르트 코스타</small></div><div class="c">511.1813-코57ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/29174/50/cover/k272837577_1.jpg" alt="언어가 삶이 될 때 표지"></div><div class="t">언어가 삶이 될 때<small>김미소</small></div><div class="c">814.7-김38ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://shopping-phinf.pstatic.net/main_4788206/47882067623.20240523071042.jpg" alt="내 언어의 한계는 내 세계의 한계이다 표지"></div><div class="t">내 언어의 한계는 내 세계의 한계이다<small>김종원</small></div><div class="c">165.58-김75ㄴ</div></div>
-  <div class="item"><div class="thumb"><img src="https://bookthumb-phinf.pstatic.net/cover/162/714/16271486.jpg" alt="은유의 도서관 표지"></div><div class="t">은유의 도서관<small>김애령</small></div><div class="c">701.01-김63ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://bookthumb-phinf.pstatic.net/cover/164/371/16437112.jpg" alt="어른의 어휘력 표지"></div><div class="t">어른의 어휘력<small>유선경</small></div><div class="c">802-유54ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/39402/74/cover200/k682139976_2.jpg" alt="단어의 쓸모 표지"></div><div class="t">단어의 쓸모<small>차민진</small></div><div class="c">802.5-차38ㄷ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/27032/36/cover/k722730620_1.jpg" alt="우리말 어감사전 표지"></div><div class="t">우리말 어감사전<small>안상순</small></div><div class="c">714-안52ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/16340/45/cover500/8984077348_1.jpg" alt="번역가 모모씨의 일일 표지"></div><div class="t">번역가 모모씨의 일일<small>노승영·박산호</small></div><div class="c">818-노57ㅂ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/29093/26/cover/8972970298_1.jpg" alt="우리는 아름답게 어긋나지 표지"></div><div class="t">우리는 아름답게 어긋나지<small>노지양·홍한별</small></div><div class="c">818-노78ㅇ</div></div>
-  <div class="item"><div class="thumb"><img src="https://image.aladin.co.kr/product/22896/47/cover500/k332636941_1.jpg" alt="당신 인생의 이야기 표지"></div><div class="t">당신 인생의 이야기<small>테드 창</small></div><div class="c">843.6-창884ㄷ</div></div>
-  <div class="item"><div class="thumb"><img src="https://shopping-phinf.pstatic.net/main_5609311/56093119252.20250827071307.jpg" alt="바벨 1·2 표지"></div><div class="t">바벨 1·2<small>R. F. 쿠앙</small></div><div class="c">843.6-쿠62ㅂ</div></div>
-  <div class="item"><div class="thumb"></div><div class="t">인생에 단어가 스며드는 순간<small>황선엽</small></div><div class="c">—</div></div>
-  <div class="item"><div class="thumb"></div><div class="t">마음의 어휘력<small>조아란·권휘·이정윤</small></div><div class="c">—</div></div>
+  <div class="grid" id="grid">
+    <button class="tile" type="button" data-i="0" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/11715/40/cover500/8955619448_1.jpg" alt="언어 공부 표지" loading="lazy"></span>
+      <span class="tTitle">언어 공부</span>
+    </button>
+    <button class="tile" type="button" data-i="1" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://bookthumb-phinf.pstatic.net/cover/163/838/16383897.jpg" alt="언어의 역사 표지" loading="lazy"></span>
+      <span class="tTitle">언어의 역사</span>
+    </button>
+    <button class="tile" type="button" data-i="2" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/38751/15/cover200/k822136041_1.jpg" alt="언어는 어떻게 인간을 바꾸는가 표지" loading="lazy"></span>
+      <span class="tTitle">언어는 어떻게 인간을 바꾸는가</span>
+    </button>
+    <button class="tile" type="button" data-i="3" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://bookthumb-phinf.pstatic.net/cover/164/934/16493460.jpg" alt="언어의 뇌과학 표지" loading="lazy"></span>
+      <span class="tTitle">언어의 뇌과학</span>
+    </button>
+    <button class="tile" type="button" data-i="4" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/29174/50/cover/k272837577_1.jpg" alt="언어가 삶이 될 때 표지" loading="lazy"></span>
+      <span class="tTitle">언어가 삶이 될 때</span>
+    </button>
+    <button class="tile" type="button" data-i="5" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://shopping-phinf.pstatic.net/main_4788206/47882067623.20240523071042.jpg" alt="내 언어의 한계는 내 세계의 한계이다 표지" loading="lazy"></span>
+      <span class="tTitle">내 언어의 한계는 내 세계의 한계이다</span>
+    </button>
+    <button class="tile" type="button" data-i="6" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://bookthumb-phinf.pstatic.net/cover/162/714/16271486.jpg" alt="은유의 도서관 표지" loading="lazy"></span>
+      <span class="tTitle">은유의 도서관</span>
+    </button>
+    <button class="tile" type="button" data-i="7" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://bookthumb-phinf.pstatic.net/cover/164/371/16437112.jpg" alt="어른의 어휘력 표지" loading="lazy"></span>
+      <span class="tTitle">어른의 어휘력</span>
+    </button>
+    <button class="tile" type="button" data-i="8" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/39402/74/cover200/k682139976_2.jpg" alt="단어의 쓸모 표지" loading="lazy"></span>
+      <span class="tTitle">단어의 쓸모</span>
+    </button>
+    <button class="tile" type="button" data-i="9" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/27032/36/cover/k722730620_1.jpg" alt="우리말 어감사전 표지" loading="lazy"></span>
+      <span class="tTitle">우리말 어감사전</span>
+    </button>
+    <button class="tile" type="button" data-i="10" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/16340/45/cover500/8984077348_1.jpg" alt="번역가 모모씨의 일일 표지" loading="lazy"></span>
+      <span class="tTitle">번역가 모모씨의 일일</span>
+    </button>
+    <button class="tile" type="button" data-i="11" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/29093/26/cover/8972970298_1.jpg" alt="우리는 아름답게 어긋나지 표지" loading="lazy"></span>
+      <span class="tTitle">우리는 아름답게 어긋나지</span>
+    </button>
+    <button class="tile" type="button" data-i="12" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://image.aladin.co.kr/product/22896/47/cover500/k332636941_1.jpg" alt="당신 인생의 이야기 표지" loading="lazy"></span>
+      <span class="tTitle">당신 인생의 이야기</span>
+    </button>
+    <button class="tile" type="button" data-i="13" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><img src="https://shopping-phinf.pstatic.net/main_5609311/56093119252.20250827071307.jpg" alt="바벨 1·2 표지" loading="lazy"></span>
+      <span class="tTitle">바벨 1·2</span>
+    </button>
+    <button class="tile" type="button" data-i="14" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><span class="ph">인생에 단어가 스며드는 순간</span></span>
+      <span class="tTitle">인생에 단어가 스며드는 순간</span>
+    </button>
+    <button class="tile" type="button" data-i="15" aria-expanded="false" aria-controls="detail">
+      <span class="cover"><span class="ph">마음의 어휘력</span></span>
+      <span class="tTitle">마음의 어휘력</span>
+    </button>
+  </div>
 
-  <a class="cta ghost" href="index.html">← 오늘의 단어로 돌아가기</a>
-  <div class="note-sm">목업 · 예시 날짜와 단어는 임의로 넣었어요</div>
+  <template id="t0">
+    <div class="dHead">
+      <div><h2>언어 공부</h2><div class="author">롬브 커토</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">열여섯 언어를 익힌 통역사가 외국어를 배워 온 경험과 공부 방법을 들려줘요. 낯선 언어를 하나씩 알아 가는 일이 새로운 사람과 문화를 만나는 즐거움으로 이어져요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>707-롬47ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%96%B8%EC%96%B4%20%EA%B3%B5%EB%B6%80">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t1">
+    <div class="dHead">
+      <div><h2>언어의 역사</h2><div class="author">데이비드 크리스털</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">아기의 첫 낱말부터 오늘날의 문자메시지까지, 말과 글이 어떻게 생겨나고 달라져 왔는지 살펴봐요. 늘 쓰는 언어에도 시대와 사람들의 삶이 겹겹이 쌓여 있음을 발견하게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>701-크298ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%96%B8%EC%96%B4%EC%9D%98%20%EC%97%AD%EC%82%AC">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t2">
+    <div class="dHead">
+      <div><h2>언어는 어떻게 인간을 바꾸는가</h2><div class="author">비오리카 마리안</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">여러 언어를 사용하는 경험이 기억과 감정, 판단과 창의성에 어떤 영향을 주는지 연구와 사례로 풀어내요. 새로운 언어를 배우는 일이 자신과 사회를 바라보는 방식까지 넓힐 수 있음을 보여줘요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>701-마298ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%96%B8%EC%96%B4%EB%8A%94%20%EC%96%B4%EB%96%BB%EA%B2%8C%20%EC%9D%B8%EA%B0%84%EC%9D%84%20%EB%B0%94%EA%BE%B8%EB%8A%94%EA%B0%80">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t3">
+    <div class="dHead">
+      <div><h2>언어의 뇌과학</h2><div class="author">알베르트 코스타</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">두 언어를 쓰는 사람의 뇌에서 말이 어떻게 처리되는지 아이와 어른을 대상으로 한 연구로 살펴봐요. 언어와 주의력, 감정, 의사결정이 만나는 지점을 따라가며 뇌의 또 다른 가능성을 엿보게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>511.1813-코57ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%96%B8%EC%96%B4%EC%9D%98%20%EB%87%8C%EA%B3%BC%ED%95%99">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t4">
+    <div class="dHead">
+      <div><h2>언어가 삶이 될 때</h2><div class="author">김미소</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">다문화가정에서 자라고 여러 나라에서 배우고 가르친 저자의 경험을 통해 언어가 삶과 맺는 관계를 들려줘요. 서로 다른 말 사이에서 살아가는 이야기가 타인의 세계를 이해하는 시야를 넓혀 줘요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>814.7-김38ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%96%B8%EC%96%B4%EA%B0%80%20%EC%82%B6%EC%9D%B4%20%EB%90%A0%20%EB%95%8C">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t5">
+    <div class="dHead">
+      <div><h2>내 언어의 한계는 내 세계의 한계이다</h2><div class="author">김종원</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">비트겐슈타인의 사유를 따라가며 평소 고르는 말과 글이 생각과 삶에 어떤 영향을 주는지 돌아봐요. 익숙한 표현을 다시 살피는 일이 자기 세계의 경계를 넓히는 첫걸음이 될 수 있어요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>165.58-김75ㄴ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EB%82%B4%20%EC%96%B8%EC%96%B4%EC%9D%98%20%ED%95%9C%EA%B3%84%EB%8A%94%20%EB%82%B4%20%EC%84%B8%EA%B3%84%EC%9D%98%20%ED%95%9C%EA%B3%84%EC%9D%B4%EB%8B%A4">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t6">
+    <div class="dHead">
+      <div><h2>은유의 도서관</h2><div class="author">김애령</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">은유를 꾸미는 말에 그치지 않고 세계를 새롭게 읽고 생각하게 하는 도구로 탐색해요. 철학과 문학을 오가며 하나의 표현이 뜻밖의 관점을 여는 순간을 만나게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>701.01-김63ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%9D%80%EC%9C%A0%EC%9D%98%20%EB%8F%84%EC%84%9C%EA%B4%80">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t7">
+    <div class="dHead">
+      <div><h2>어른의 어휘력</h2><div class="author">유선경</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">어휘가 부족할 때 생각과 감정을 전하고 타인의 말을 이해하는 일이 왜 어려워지는지 짚어요. 알맞은 말을 찾아가는 과정에서 사람과 세상을 받아들이는 폭도 함께 넓어져요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>802-유54ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%96%B4%EB%A5%B8%EC%9D%98%20%EC%96%B4%ED%9C%98%EB%A0%A5">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t8">
+    <div class="dHead">
+      <div><h2>단어의 쓸모</h2><div class="author">차민진</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">일상 대화부터 글쓰기와 시사 표현까지, 익숙하고 모호한 말을 상황에 맞는 단어로 바꾸는 법을 알려줘요. 하고 싶은 말을 더 정확하고 배려 있게 전하는 어휘의 힘을 느낄 수 있어요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>802.5-차38ㄷ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EB%8B%A8%EC%96%B4%EC%9D%98%20%EC%93%B8%EB%AA%A8">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t9">
+    <div class="dHead">
+      <div><h2>우리말 어감사전</h2><div class="author">안상순</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">뜻이 비슷해 보여도 쓰임과 느낌은 다른 우리말을 나란히 놓고 그 차이를 풀어줘요. 무심코 쓰던 단어의 결을 알아 가며 우리말로 표현할 수 있는 세계가 한층 세밀해져요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>714-안52ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%9A%B0%EB%A6%AC%EB%A7%90%20%EC%96%B4%EA%B0%90%EC%82%AC%EC%A0%84">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t10">
+    <div class="dHead">
+      <div><h2>번역가 모모씨의 일일</h2><div class="author">노승영·박산호</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">과학책과 소설을 번역하는 두 사람이 단어 하나를 고르는 고민부터 일상의 노동까지 들려줘요. 다른 언어로 쓰인 책이 우리말 독자에게 닿기까지 어떤 선택이 필요한지 엿보게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>818-노57ㅂ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EB%B2%88%EC%97%AD%EA%B0%80%20%EB%AA%A8%EB%AA%A8%EC%94%A8%EC%9D%98%20%EC%9D%BC%EC%9D%BC">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t11">
+    <div class="dHead">
+      <div><h2>우리는 아름답게 어긋나지</h2><div class="author">노지양·홍한별</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">두 번역가가 번역과 일, 우정과 삶에 관해 서로에게 보낸 편지를 엮었어요. 원문의 결을 우리말로 옮기는 고민 속에서 서로 다른 목소리를 존중하는 법도 함께 만나게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>818-노78ㅇ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%9A%B0%EB%A6%AC%EB%8A%94%20%EC%95%84%EB%A6%84%EB%8B%B5%EA%B2%8C%20%EC%96%B4%EA%B8%8B%EB%82%98%EC%A7%80">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t12">
+    <div class="dHead">
+      <div><h2>당신 인생의 이야기</h2><div class="author">테드 창</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">언어와 과학, 인간의 선택을 낯선 상상력으로 비추는 여덟 편의 SF를 만날 수 있어요. 그중 외계인의 언어를 배우는 이야기는 말을 배우는 일이 세계를 이해하는 방식까지 바꿀 수 있을지 묻게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>843.6-창884ㄷ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EB%8B%B9%EC%8B%A0%20%EC%9D%B8%EC%83%9D%EC%9D%98%20%EC%9D%B4%EC%95%BC%EA%B8%B0">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t13">
+    <div class="dHead">
+      <div><h2>바벨 1·2</h2><div class="author">R. F. 쿠앙</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">번역할 때 사라지는 의미가 마법의 힘이 되는 세계를 배경으로 이야기가 펼쳐져요. 언어 사이의 차이가 어떻게 지식과 권력의 문제가 되는지 생각하게 해요.</p>
+    <div class="meta">
+      <span class="call">청구기호 <b>843.6-쿠62ㅂ</b></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EB%B0%94%EB%B2%A8">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t14">
+    <div class="dHead">
+      <div><h2>인생에 단어가 스며드는 순간</h2><div class="author">황선엽</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">일상에서 쓰는 단어의 역사와 어원, 문화적 배경을 따라가며 말에 담긴 삶의 흔적을 찾아요. 익숙한 낱말을 새롭게 알게 될 때 평범한 하루를 바라보는 눈도 달라져요.</p>
+    <div class="meta">
+      <span class="call"><span class="soonTxt">청구기호 준비 중</span></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EC%9D%B8%EC%83%9D%EC%97%90%20%EB%8B%A8%EC%96%B4%EA%B0%80%20%EC%8A%A4%EB%A9%B0%EB%93%9C%EB%8A%94%20%EC%88%9C%EA%B0%84">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+  <template id="t15">
+    <div class="dHead">
+      <div><h2>마음의 어휘력</h2><div class="author">조아란·권휘·이정윤</div></div>
+      <button class="close" type="button" aria-label="닫기">×</button>
+    </div>
+    <p class="quote">여러 나라의 언어에서 고른 감정 단어 70개로 한마디로 뭉뚱그렸던 마음을 세밀하게 살펴봐요. 감정에 알맞은 이름을 붙이며 미처 알아채지 못한 자기 마음을 만날 수 있어요.</p>
+    <div class="meta">
+      <span class="call"><span class="soonTxt">청구기호 준비 중</span></span>
+      <a class="link" target="_blank" rel="noopener" href="https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=%EB%A7%88%EC%9D%8C%EC%9D%98%20%EC%96%B4%ED%9C%98%EB%A0%A5">대출 가능 여부 확인 →</a>
+    </div>
+  </template>
+
+  <div class="ctaBox">
+    <p class="ctaLead"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8d9a86" stroke-width="1.6" stroke-linecap="round"><path d="M12 21c0-6 3-11 8-13-1 7-4 11-8 13z"/><path d="M12 21c0-5-3-9-8-10 1 6 4 9 8 10z"/></svg>오늘은 어떤 단어가 기다리고 있을까요?</p>
+    <a class="cta" href="index.html">오늘의 단어 보러 가기 <span class="arw">→</span></a>
+  </div>
 </section>
+
+<script>
+  var grid = document.getElementById("grid");
+  var COLS = 3;
+  function close(){
+    var d = document.getElementById("detail"); if (d) d.remove();
+    var on = grid.querySelector(".tile.on"); if (on) { on.classList.remove("on"); on.setAttribute("aria-expanded","false"); }
+  }
+  grid.addEventListener("click", function(e){
+    var t = e.target.closest(".tile"); if (!t) return;
+    var wasOn = t.classList.contains("on");
+    close(); if (wasOn) return;
+    var i = +t.dataset.i;
+    var d = document.createElement("div"); d.className = "detail"; d.id = "detail";
+    d.appendChild(document.getElementById("t" + i).content.cloneNode(true));
+    // 누른 표지의 줄 끝 뒤에 끼워 넣기
+    var tiles = grid.querySelectorAll(".tile");
+    var rowEnd = Math.min(Math.ceil((i + 1) / COLS) * COLS, tiles.length);
+    if (rowEnd < tiles.length) grid.insertBefore(d, tiles[rowEnd]); else grid.appendChild(d);
+    // 말풍선 꼬리를 누른 표지 가운데로
+    var gr = grid.getBoundingClientRect(), tr = t.getBoundingClientRect();
+    d.style.setProperty("--x", (tr.left + tr.width/2 - gr.left) + "px");
+    t.classList.add("on"); t.setAttribute("aria-expanded","true");
+    d.querySelector(".close").addEventListener("click", close);
+    setTimeout(function(){ d.scrollIntoView({behavior:"smooth", block:"nearest"}); }, 50);
+  });
+</script>
 </body>
 </html>
