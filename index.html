@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>오늘의 단어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f5f2ea; --paper:#fffdf8; --note:#fffef9; --ink:#33302a; --sub:#847a6d;
+    --line:#e7e0d2; --green:#5b6f58; --green-dk:#4a5c47; --tape:#a8b79f; --chip:#eef0e9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.7;
+       background:
+         radial-gradient(circle at 18% 12%, rgba(255,255,255,.55), transparent 42%),
+         radial-gradient(circle at 82% 78%, rgba(255,255,255,.4), transparent 45%),
+         var(--bg);
+       padding-inline:14px}
+  .screen{max-width:430px;margin:0 auto;padding-block:0 40px}
+
+  .bar{position:sticky;top:0;z-index:5;width:100vw;margin-left:calc(50% - 50vw);
+       background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(70,58,40,.05)}
+  .bar .inner{max-width:430px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:12px 16px}
+  .bar .ttl{font-family:"Noto Serif KR",serif;font-size:18px;letter-spacing:.04em;line-height:1.2}
+  .bar .sub{display:block;font-size:12px;color:var(--sub)}
+
+  .banner{position:relative;margin-top:18px;display:flex;justify-content:center;align-items:center;
+          border-radius:14px;overflow:hidden;
+          background:linear-gradient(160deg,#efe9dc 0%,#e8e3d4 60%,#e3ded0 100%);
+          border:1px solid var(--line);padding:30px 16px 24px;min-height:246px}
+  .banner .deco{position:absolute;right:-14px;bottom:-14px;width:180px;opacity:.5;z-index:0}
+  .note{position:relative;z-index:1;width:min(268px,78%);background:var(--note);border:1px solid #efe9dc;
+        border-radius:2px;padding:34px 18px 22px;text-align:center;
+        box-shadow:0 10px 24px rgba(70,58,40,.14);transform:rotate(-1.2deg)}
+  .note::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);
+        width:86px;height:24px;background:var(--tape);opacity:.6;border-radius:1px;
+        box-shadow:0 1px 2px rgba(0,0,0,.06)}
+  .eyebrow{font-size:10.5px;letter-spacing:.34em;color:#9a9082}
+  .word{font-family:"Noto Serif KR",serif;font-weight:700;font-size:52px;line-height:1.1;margin:8px 0 0;letter-spacing:.05em}
+  .rule{width:38px;height:1px;background:#ddd5c5;margin:14px auto}
+  .meaning{font-family:"Noto Serif KR",serif;font-size:15px;color:#4c463d;margin:0}
+  .date{margin-top:16px;font-size:12px;color:#9a9082;letter-spacing:.04em}
+
+  .sec{margin:30px 0 4px}
+  .mark{position:relative;font-family:"Noto Serif KR",serif;font-size:21px;font-weight:700;display:inline-block}
+  .mark::after{content:"";position:absolute;left:-4px;right:-4px;bottom:1px;height:11px;background:#e3e8dd;
+               border-radius:2px;z-index:-1;transform:rotate(-.6deg)}
+  .lead{font-size:13.5px;color:var(--sub);margin:2px 0 16px}
+
+  .book{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;
+        box-shadow:0 6px 18px rgba(80,66,44,.07)}
+  .book .top{display:flex;gap:16px;align-items:flex-start}
+  .cover{flex:0 0 100px;width:100px;aspect-ratio:2/3;border-radius:5px;overflow:hidden;background:#ece5d8;
+         box-shadow:0 8px 18px rgba(70,58,40,.22);display:flex;align-items:center;justify-content:center}
+  .cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .cover .ph{font-family:"Noto Serif KR",serif;font-size:12px;color:#9a9082;text-align:center;padding:8px;line-height:1.4}
+  .book h2{font-family:"Noto Serif KR",serif;font-size:20px;margin:2px 0 3px;line-height:1.35}
+  .book .author{font-size:13px;color:var(--sub)}
+  .quote{font-family:"Noto Serif KR",serif;font-size:14.5px;color:#4c463d;margin:12px 0 0;line-height:1.75}
+  .quote::before{content:"\201C";color:#b9c2b2;font-size:22px;line-height:0;margin-right:2px}
+  .quote::after{content:"\201D";color:#b9c2b2;font-size:22px;line-height:0;margin-left:2px}
+  .meta{display:flex;align-items:center;justify-content:space-between;gap:10px;
+        border-top:1px dashed var(--line);margin-top:16px;padding-top:12px}
+  .call{font-size:12.5px;color:var(--sub)}
+  .call b{color:var(--ink);font-weight:500}
+  .link{flex:0 0 auto;display:inline-flex;align-items:center;gap:5px;padding:7px 12px;
+        border:1.2px solid var(--green);border-radius:999px;background:#eef0e9;
+        color:var(--green-dk);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+
+  .ctaBox{margin-top:26px;background:#eef0e9;border-radius:14px;padding:16px}
+  .ctaLead{display:flex;align-items:center;justify-content:center;gap:8px;margin:2px 0 12px;text-align:center;
+           font-family:"Noto Serif KR",serif;font-size:15px;color:#4c5a49}
+  .cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+       padding:13px 16px;border:0;border-radius:11px;background:var(--green);color:#fdfbf6;
+       font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 5px 12px rgba(75,92,71,.22)}
+  .cta .arw{font-size:15px}
+  .foot{margin-top:24px;text-align:center;font-size:12px;color:var(--sub)}
+  .foot .em{font-family:"Noto Serif KR",serif;font-size:15px;color:#5a5249;display:block;margin-bottom:3px}
+</style>
+</head>
+<body>
+
+<section class="screen">
+  <div class="bar"><div class="inner">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5b6f58" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5h6a3 3 0 0 1 3 3V20a2.5 2.5 0 0 0-2.5-2.5H3z"/><path d="M21 5.5h-6a3 3 0 0 0-3 3V20a2.5 2.5 0 0 1 2.5-2.5H21z"/></svg>
+    <div>
+      <div class="ttl">오늘의 단어</div>
+      <span class="sub">전시 연계 페이지 · 언어로 넓어지는 세계 북큐레이션</span>
+    </div>
+  </div></div>
+
+  <div class="banner">
+    <div class="note">
+      <div class="eyebrow">TODAY'S WORD</div>
+      <div class="word" id="word">—</div>
+      <div class="rule"></div>
+      <p class="meaning" id="meaning"></p>
+      <div class="date" id="date"></div>
+    </div>
+    <svg class="deco" viewBox="0 0 220 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="#8d9a86" stroke-width="2" stroke-linecap="round">
+        <path d="M150 96c0-14 4-26 10-36M150 96c-9-5-15-14-17-25 12 1 21 7 26 16M150 88c8-4 14-12 16-22-11 1-19 6-24 14M150 104c-9-2-17-8-21-16 11-2 20 1 26 8" fill="#dfe6da"/>
+      </g>
+      <path d="M138 100h26c4 0 7 3 7 7v40c0 6-5 11-11 11h-18c-6 0-11-5-11-11v-40c0-4 3-7 7-7z" fill="#eef1ea" stroke="#b9c2b2" stroke-width="2"/>
+      <path d="M138 128h40" stroke="#cfd6c9" stroke-width="2"/>
+      <rect x="18" y="118" width="116" height="20" rx="4" fill="#fffdf8" stroke="#c9c0ad" stroke-width="2"/>
+      <rect x="26" y="138" width="116" height="20" rx="4" fill="#f0ece0" stroke="#c9c0ad" stroke-width="2"/>
+      <rect x="12" y="98" width="104" height="20" rx="4" fill="#e7ece3" stroke="#b9c2b2" stroke-width="2"/>
+      <text x="36" y="132" font-family="Noto Serif KR, serif" font-size="11" fill="#8a8172">GOOD BOOKS</text>
+      <text x="44" y="152" font-family="Noto Serif KR, serif" font-size="11" fill="#8a8172">BETTER DAYS</text>
+      <path d="M24 112h80" stroke="#cfd6c9" stroke-width="1.6"/>
+    </svg>
+  </div>
+
+  <div class="sec"><span class="mark">이런 책은 어때요?</span></div>
+  <p class="lead" id="lead"></p>
+
+  <article class="book">
+    <div class="top">
+      <div class="cover" id="cover"></div>
+      <div>
+        <h2 id="title"></h2>
+        <div class="author" id="author"></div>
+      </div>
+    </div>
+    <p class="quote" id="desc"></p>
+    <div class="meta">
+      <span class="call" id="call"></span>
+      <a class="link" id="loan" target="_blank" rel="noopener">대출 가능 여부 확인 →</a>
+    </div>
+  </article>
+
+  <div class="ctaBox">
+    <p class="ctaLead"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8d9a86" stroke-width="1.6" stroke-linecap="round"><path d="M12 21c0-6 3-11 8-13-1 7-4 11-8 13z"/><path d="M12 21c0-5-3-9-8-10 1 6 4 9 8 10z"/></svg>언어가 넓혀주는 세계가 궁금하다면</p>
+    <a class="cta" href="exhibit.html">전시 도서 16권 모두 보기 <span class="arw">→</span></a>
+  </div>
+
+  <div class="foot"><span class="em">내일은 또 어떤 단어일까요?</span>전시대의 QR을 내일 다시 찍어 보세요</div>
+</section>
+
+<script src="data.js"></script>
+<script>
+  // 운영 시작일 — 이 줄만 바꾸면 날짜별 단어 순서가 맞춰집니다 (월은 0부터: 9 = 10월)
+  var START = new Date(2026, 9, 1);
+
+  var SEARCH = "https://www.hscitylib.or.kr/mdlib/program/searchResultList.do?searchType=SIMPLE&searchManageCodeArr=MI&searchKeyword=";
+
+  function todayIndex(){
+    var now = new Date();
+    var a = new Date(START.getFullYear(), START.getMonth(), START.getDate());
+    var b = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var days = Math.floor((b - a) / 86400000);
+    return ((days % WORDS.length) + WORDS.length) % WORDS.length;
+  }
+
+  function render(){
+    var w = WORDS[todayIndex()];
+    var b = w.books[Math.floor(Math.random() * w.books.length)];
+    var now = new Date();
+    var wd = ["일","월","화","수","목","금","토"][now.getDay()];
+
+    document.getElementById("word").textContent = w.word;
+    document.getElementById("meaning").textContent = w.meaning;
+    document.getElementById("date").textContent =
+      now.getFullYear() + ". " + (now.getMonth()+1) + ". " + now.getDate() + ". (" + wd + ")";
+    var last = w.word.charCodeAt(w.word.length - 1);
+    var josa = ((last - 0xAC00) % 28 > 0) ? "과" : "와";   // 받침 있으면 '과', 없으면 '와'
+    document.getElementById("lead").textContent = "'" + w.word + "'" + josa + " 닮은 이야기를 한 권 골랐어요.";
+
+    var cover = document.getElementById("cover");
+    if (b.cover) {
+      var img = new Image();
+      img.alt = b.title + " 표지";
+      img.onerror = function(){ cover.innerHTML = '<span class="ph">' + b.title + '</span>'; };
+      img.src = b.cover;
+      cover.innerHTML = ""; cover.appendChild(img);
+    } else {
+      cover.innerHTML = '<span class="ph">' + b.title + '</span>';
+    }
+
+    document.getElementById("title").textContent = b.title;
+    document.getElementById("author").textContent = b.author;
+    document.getElementById("desc").textContent = b.desc;
+    document.getElementById("call").innerHTML = b.call ? ("청구기호 <b>" + b.call + "</b>") : "";
+    document.getElementById("loan").href = SEARCH + encodeURIComponent(b.q);
+  }
+  render();
+</script>
+</body>
+</html>
